@@ -1,0 +1,28 @@
+.menu-parents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}   
+
+.menu-list{
+    display: flex;
+    justify-content: center;
+    font-size: 0.7cm;
+    padding: 0.2cm 0cm;
+    /* border: 0.2mm solid whitesmoke; */
+    background-color: rgb(77, 84, 103);
+    width: 5cm;
+    user-select: none;
+    margin-bottom: 0.2cm;
+    border-radius: 0.2cm;
+    cursor: pointer;
+    box-shadow: 6px 3px 8px inset rgb(210, 210, 210);
+}
+
+.menu-list:hover{
+    background-color: whitesmoke;
+    color: black;
+}

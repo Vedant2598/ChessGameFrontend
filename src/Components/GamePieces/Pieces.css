@@ -1,0 +1,39 @@
+.piece{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.3cm;
+    cursor: grab;
+    /* transition: 1s; */
+    
+    /* transform: rotateZ(180deg); */
+}
+
+.piece span{
+    position: absolute;
+    bottom: 0;
+    transition: 1s;
+    /* border: 0.2mm solid red; */
+    
+}
+
+.piece:hover{
+    background-color: rgba(0, 233, 0, 0.352);
+}
+
+.white-piece{
+    color: rgb(255, 255, 255);
+}
+
+.black-piece{
+    color: black;
+}
+
+@media only screen and (max-device-width:700px) {
+    .piece{
+        font-size: 0.8cm;
+    }   
+}

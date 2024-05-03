@@ -1,0 +1,88 @@
+.chess-board-parent{
+    display: flex;
+    justify-content: center;
+    /* border: 0.2mm solid blue; */
+    width: 100%;
+}
+
+.chess-board{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* border: 0.2mm solid green; */
+    /* min-width: 16.4cm;
+    max-width:16.4cm ;
+    min-height: 16.8cm;
+    max-height: 16.8cm; */
+    
+    min-width: 16cm;
+    max-width:  16cm ;
+    min-height: 16cm;
+    max-height: 16cm;
+    margin-top: 1cm;
+    /* border: 0.2mm solid blue; */
+    /* transform: rotateZ(180deg); */
+}
+
+.chess-board-row{
+    display: flex;
+    flex-direction: row;
+    /* border: 0.2mm solid rgb(188, 132, 20); */
+    width: 16cm;
+}
+
+
+.chess-board-squares{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* border: 0.2mm solid red; */
+    width: 2cm;
+    height: 2cm;
+    color: black;
+    user-select: none;
+    
+}
+
+.light-square{
+    
+    background-color: rgb(148, 148, 148);
+}
+
+.dark-square{
+    background-color: rgb(67, 84, 94);
+}
+
+.dot-highlights{
+    position: absolute;
+    width: 0.2cm;
+    height: 0.2cm;
+    background-color: rgb(55, 154, 22);
+    /* border: 0.2mm solid whitesmoke; */
+    border-radius: 1cm;
+}
+
+
+@media only screen and (max-device-width:700px) {
+    .chess-board-row{
+        
+        width: 10cm;
+    }
+    .chess-board-squares{
+        
+        width: 1.2cm;
+        height: 1.2cm;
+       
+    }
+
+    .chess-board{
+
+        min-width: 10cm;
+        max-width: 10cm;
+        min-height:10cm;
+        max-height:10cm;
+        margin-left: 0.4cm;
+    
+    }
+}
