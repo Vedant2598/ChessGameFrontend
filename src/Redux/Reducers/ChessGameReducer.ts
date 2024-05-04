@@ -14,6 +14,11 @@ let intitialstate={chessBoard:
         availableMovesLocations:[],
         availableMovesFor:[],
         pieceName:""
+    },
+    gameSettings:{
+        check:false,
+        myPieceColor:"white",
+        myTurn:true
     }
     
     
@@ -25,13 +30,13 @@ const chessGameReducer=(state=intitialstate,action:any)=>{
 
         case "availableMoves":
             state={...state,availableMoves:action.payload}
-            // console.log(state)
+            console.log(state)
             return state
 
         case "disableAvailableMoves":
             let available2:any={showAvailableMovesToggle:false,availableMovesLocations:[],availableMovesFor:[]}
             state={...state,availableMoves:available2}
-            console.log("Disabled")
+            // console.log("Disabled")
             return state
 
         

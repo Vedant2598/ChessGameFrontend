@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import "./GameBoard.css"
 import Pieces from '../GamePieces/Pieces'
 import {  useDispatch, useSelector } from 'react-redux'
@@ -9,6 +9,8 @@ const GameBoard:React.FC = () => {
    
     const dispatch=useDispatch()
     const selector=useSelector(((state:any)=>state.chessGameReducer))
+    const ref=useRef<any>()
+
     const [arr] = useState<string[][]>(selector.chessBoard)
 
     const disableAvailableMoves=()=>{
@@ -17,15 +19,26 @@ const GameBoard:React.FC = () => {
         
     }
 
+    const switchBoard=()=>{
+        if(selector.gameSettings.myPieceColor==="white"){
+            ref.current.style.transform="rotateZ(180deg)"
+        }
+    }
+
+    useEffect(()=>{
+        switchBoard()
+    },[])
+
   return (
    
    <div className='chess-board-parent' onClick={disableAvailableMoves}>
 
-    <div className='chess-board' onDragOver={(e)=>{e.preventDefault()}}>
+    <div ref={ref} className='chess-board' onDragOver={(e)=>{e.preventDefault()}}>
        
         {arr.map((item,index)=>(
             
             <div className='chess-board-row'>
+            <b style={{color:"white"}}></b>
                 {arr[index].map((item,index2)=>(
                     <Squares name={item} row={index} column={index2}/>            
                 ))
@@ -50,16 +63,19 @@ interface SquaresProps{
 }
 
 const Squares:React.FC<SquaresProps>=(props)=>{
-    const dispatch=useDispatch()
 
+    const dispatch=useDispatch()
+    const selector=useSelector((state:any)=>state.chessGameReducer)
+    const ref=useRef<any>()
 
     const [squareColor, setsquareColor] = useState<string>("None")
     const [HighlightAvailableMoves, setHighlightAvailableMoves] = useState(false)
 
-    const selector=useSelector((state:any)=>state.chessGameReducer)
+    
 
 
     const moveThePiece=()=>{
+        
         if(HighlightAvailableMoves===true){
             
             let options={moveTo:[props.row,props.column],pieceName:selector.availableMoves.pieceName}
@@ -77,8 +93,15 @@ const Squares:React.FC<SquaresProps>=(props)=>{
         }
     }
 
+    const switchBoard=()=>{
+        if(selector.gameSettings.myPieceColor==="white"){
+            ref.current.style.transform="rotateZ(180deg)"
+        }
+    }
+
     useEffect(()=>{
         setColors()
+        switchBoard()
     },[])
 
     useEffect(()=>{
@@ -100,11 +123,14 @@ const Squares:React.FC<SquaresProps>=(props)=>{
 
     return(
         <>
-            <div className={squareColor==="light"?'chess-board-squares light-square':'chess-board-squares dark-square'} onClick={moveThePiece}>
+            <div ref={ref} className={squareColor==="light"?'chess-board-squares light-square':'chess-board-squares dark-square'}>
                     <Pieces pieceName={props.name} row={props.row} column={props.column}/>
-                    
+                    {/* <b>{props.row}{props.column}</b> */}
                     {HighlightAvailableMoves&&
-                        <div className='dot-highlights'></div>
+                        <div className='dot-highlights-parent' onClick={moveThePiece}>
+
+                            <div className='dot-highlights'></div>
+                        </div>
                     }
             </div>
         </>

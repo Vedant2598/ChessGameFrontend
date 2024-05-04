@@ -34,6 +34,14 @@
 
 @media only screen and (max-device-width:700px) {
     .piece{
-        font-size: 0.8cm;
+        font-size: 0.9cm;
     }   
+
+    .piece span{
+        position: absolute;
+        bottom: -0.1cm;
+        transition: 1s;
+        /* border: 0.2mm solid red; */
+        
+    }
 }
